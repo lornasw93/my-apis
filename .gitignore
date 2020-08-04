@@ -67,3 +67,4 @@ node_modules/
 .env
 /.vs/slnx.sqlite
 /.vs/my-apis/v16/.suo
+.vs/VSWorkspaceState.json
