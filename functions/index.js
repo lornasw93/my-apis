@@ -28,9 +28,15 @@ const corsOptions = {
   },
 };
 
+function setCache(response) {
+  response.set("Cache-Control", "public, max-age=300, s-maxage=600");
+}
+
 const username = "lornasw93";
 
 app.get("/repos", (req, res) => {
+  setCache(res);
+
   axios({
     method: "get",
     url: `https://api.github.com/users/${username}/repos`,
@@ -93,6 +99,8 @@ app.post("/contactEmail", cors(corsOptions), (request, response) => {
 });
 
 app.get("/blogPosts", (req, res) => {
+  setCache(res);
+  
   axios
     .get(`https://dev.to/api//articles?username=${username}`)
     .then((resp) => {
