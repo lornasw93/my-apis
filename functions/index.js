@@ -9,6 +9,7 @@ var cors = require("cors"),
   axios = require("axios"),
   nodemailer = require("nodemailer");
 
+const cheerio = require("cheerio");
 const client = require("twilio")(config.accountSid, config.authToken);
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -47,10 +48,28 @@ app.get("/repos", (req, res) => {
     });
 });
 
+app.get("/repo/readme/:name", (request, res) => {
+  var repo = request.params.name;
+
+  axios({
+    method: "get",
+    url: `https://github.com/lornasw93/${repo}/blob/master/README.md`,
+  })
+    .then((response) => {
+      const htmlString = response.data;
+      const $ = cheerio.load(htmlString);
+      const pText = $("article").html();
+      res.send(pText);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
 app.post("/contactEmail", cors(corsOptions), (request, response) => {
-  var text = `<p><b>${req.query.name}</b> has filled out the contact form on https://lorna.dev/contact. The details are:</p>
-    <p><b>Email</b>: ${req.query.email}</p>
-    <p><b>Message</b>: ${req.query.message}</p>`;
+  var text = `<p><b>${request.body.name}</b> has filled out the contact form on https://lorna.dev/contact. The details are:</p>
+                <p><b>Email</b>: ${request.body.email}</p>
+                <p><b>Message</b>: ${request.body.message}</p>`;
 
   var transporter = nodemailer.createTransport(
     `smtps://${config.fromEmail}:${config.password}@${config.host}`
@@ -67,7 +86,7 @@ app.post("/contactEmail", cors(corsOptions), (request, response) => {
     if (error) {
       console.log(error);
     }
-    res.status(200).send({
+    response.status(200).send({
       message: "success",
     });
   });
@@ -84,7 +103,7 @@ app.get("/blogPosts", (req, res) => {
     });
 });
 
-app.get("/sms:body", (req, res) => { 
+app.get("/sms:body", (req, res) => {
   client.messages
     .create({
       body: req.query.body,
@@ -93,7 +112,7 @@ app.get("/sms:body", (req, res) => {
     })
     .then((message) => res.send(message.sid))
     .catch((err) => {
-        res.send(err);
+      res.send(err);
     });
 });
 
