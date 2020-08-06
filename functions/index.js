@@ -71,7 +71,7 @@ app.get("/repo/readme/:", (request, res) => {
     });
 });
 
-app.post("/email/my-website/contact/me", cors(corsOptions), (request, response) => {
+app.post("/email/my-website/contact", cors(corsOptions), (request, response) => {
   var text = `<p><b>${request.body.name}</b> has filled out the contact form on https://lorna.dev/contact. The details are:</p>
                 <p><b>Email</b>: ${request.body.email}</p>
                 <p><b>Message</b>: ${request.body.message}</p>`;
@@ -97,66 +97,12 @@ app.post("/email/my-website/contact/me", cors(corsOptions), (request, response) 
   });
 });
 
-app.post("/email/my-website/contact/them", cors(corsOptions), (request, response) => {
-  var text = `<p><b>${request.body.name}</b> has filled out the contact form on https://lorna.dev/contact. The details are:</p>
-                <p><b>Email</b>: ${request.body.email}</p>
-                <p><b>Message</b>: ${request.body.message}</p>`;
-
-  var transporter = nodemailer.createTransport(
-    `smtps://${config.fromEmail}:${config.password}@${config.host}`
-  );
-
-  const mailOptions = {
-    from: `"${config.fromName}" <${config.fromEmail}>`,
-    to: config.toEmail,
-    subject: `Form Submitted from https://lorna.dev/contact`,
-    html: text,
-  };
-
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.log(error);
-    }
-    response.status(200).send({
-      message: "success",
-    });
-  });
-});
-
-app.post("/email/mikes-flooring/contact/me", cors(corsOptions), (request, response) => {
+app.post("/email/mikes-flooring/contact", cors(corsOptions), (request, response) => {
   var text = `<p><b>${request.body.name}</b> has filled out the contact form on https://mikesflooring.co.uk/contact. The details are:</p>
               <p><b>Email</b>: ${request.body.email}</p>
               <p><b>Phone</b>: ${request.body.phone}</p>
               <p><b>Service</b>: ${request.body.service}</p>
               <p><b>Message</b>: ${request.body.message}</p>`;
-
-  var transporter = nodemailer.createTransport(
-    `smtps://${config.fromEmail}:${config.password}@${config.host}`
-  );
-
-  const mailOptions = {
-    from: `"${config.fromName}" <${config.fromEmail}>`,
-    to: config.toEmail,
-    subject: `Form Submitted from https://mikesflooring.co.uk/contact`,
-    html: text,
-  };
-
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.log(error);
-    }
-    response.status(200).send({
-      message: "success",
-    });
-  });
-});
-
-app.post("/email/mikes-flooring/contact/them", cors(corsOptions), (request, response) => {
-  var text = `<p>Hi <b>${request.body.name}</b>, <br/>Thanks for getting in touch via the contact form on my website https://mikesflooring.co.uk/contact. The provided details are:</p>
-              <p><b>Email</b>: ${request.body.email}</p>
-              <p><b>Phone</b>: ${request.body.phone}</p>
-              <p><b>Service</b>: ${request.body.service}</p>
-              <p><b>Message</b>: ${request.body.message}</p><br/>I will be in contact as soon as I can. <br>Mike`;
 
   var transporter = nodemailer.createTransport(
     `smtps://${config.fromEmail}:${config.password}@${config.host}`
