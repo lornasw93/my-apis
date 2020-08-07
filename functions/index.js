@@ -61,20 +61,17 @@ app.get("/repo/:name/readme", (request, res) => {
     url: `https://github.com/lornasw93/${repo}/blob/master/README.md`
   })
     .then((response) => {
-      const htmlString = response.data;
-      const $ = cheerio.load(htmlString);
-      const pText = $("article").html();
-      res.send(pText);
+      const data = response.data;
+      const $ = cheerio.load(data);
+      const article = $("article").html();
+      res.send(article);
     })
     .catch((err) => {
       res.send(err);
     });
 });
 
-app.post(
-  "/email/my-website/contact",
-  cors(corsOptions),
-  (request, response) => {
+app.post("/email/my-website/contact", cors(corsOptions), (request, response) => {
     var text = `<p><b>${request.body.name}</b> has filled out the contact form on https://lorna.dev/contact. The details are:</p>
                 <p><b>Email</b>: ${request.body.email}</p>
                 <p><b>Message</b>: ${request.body.message}</p>`;
@@ -101,10 +98,7 @@ app.post(
   }
 );
 
-app.post(
-  "/email/mikes-flooring/contact",
-  cors(corsOptions),
-  (request, response) => {
+app.post("/email/mikes-flooring/contact", cors(corsOptions), (request, response) => {
     var text = `<p><b>${request.body.name}</b> has filled out the contact form on https://mikesflooring.co.uk/contact. The details are:</p>
               <p><b>Email</b>: ${request.body.email}</p>
               <p><b>Phone</b>: ${request.body.phone}</p>
