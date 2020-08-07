@@ -53,12 +53,12 @@ app.get("/repos", (req, res) => {
     });
 });
 
-app.get("/repo/readme/:", (request, res) => {
+app.get("/repo/:name/readme", (request, res) => {
   var repo = request.params.name;
 
   axios({
     method: "get",
-    url: `https://github.com/lornasw93/${repo}/blob/master/README.md`,
+    url: `https://github.com/lornasw93/${repo}/blob/master/README.md`
   })
     .then((response) => {
       const htmlString = response.data;
@@ -137,7 +137,7 @@ app.get("/posts", (req, res) => {
   setCache(res);
 
   axios
-    .get(`https://dev.to/api//articles?username=${username}`)
+    .get(`https://dev.to/api/articles?username=${username}`)
     .then((resp) => {
       res.send(resp.data);
     })
