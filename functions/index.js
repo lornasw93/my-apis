@@ -98,35 +98,6 @@ app.post("/email/my-website/contact", cors(corsOptions), (request, response) => 
   }
 );
 
-app.post("/email/mikes-flooring/contact", cors(corsOptions), (request, response) => {
-    var text = `<p><b>${request.body.name}</b> has filled out the contact form on https://mikesflooring.co.uk/contact. The details are:</p>
-              <p><b>Email</b>: ${request.body.email}</p>
-              <p><b>Phone</b>: ${request.body.phone}</p>
-              <p><b>Service</b>: ${request.body.service}</p>
-              <p><b>Message</b>: ${request.body.message}</p>`;
-
-    var transporter = nodemailer.createTransport(
-      `smtps://${config.fromEmail}:${config.password}@${config.host}`
-    );
-
-    const mailOptions = {
-      from: `"${config.fromName}" <${config.fromEmail}>`,
-      to: config.toEmail,
-      subject: `Form Submitted from https://mikesflooring.co.uk/contact`,
-      html: text,
-    };
-
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log(error);
-      }
-      response.status(200).send({
-        message: "success",
-      });
-    });
-  }
-);
-
 app.get("/posts", (req, res) => {
   setCache(res);
 
