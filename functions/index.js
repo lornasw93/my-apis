@@ -31,7 +31,8 @@ app.get('/repos', repoRoutes);
 app.get('/repo/:name/readme', repoRoutes);
 app.get('/posts', blogRoutes);
 app.get('/sms:body', textMessageRoutes); 
- 
+
+//TODO setup route for emails too
 app.post('/email/my-website/contact', cors(corsOptions), function (req, res) {
   var text = `<p><b>${req.body.name}</b> has filled out the contact form on https://lorna.dev/contact. The details are:</p>
     <p><b>Email</b>: ${req.body.email}</p>
