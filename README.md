@@ -1,19 +1,34 @@
 # My APIs
 
-[![time tracker](https://wakatime.com/badge/github/lornasw93/my-apis.svg)](https://wakatime.com/badge/github/lornasw93/my-apis)
+The purpose of this project is to work as a backend service for my portfolio website.
 
-I initially was going to have a few Node.js API projects talking with my website i.e. get blogs and get repos, but since have decided to combine the APIs needed into a single project as I want minimal costs.
+## Tech stack
+* Node.js
+* Firebase (Cloud Functions) (not free 😢 but wicked 😎)
+* Heruko for hosting (free)
 
-I will update this README when I've tidied up the code i.e. routes, controllers implemented.
+## How to run the project
+Because I'm using FCF you'll need to `cd` into the *functions* folder of your workspace folder i.e. mine is:
 
-## Blog
-...
+`cd C:\Users\lorna.watson\repos\my-apis\functions`
 
-## Email
-...
+To run locally, fire off `firebase serve` and usually this uses port *5000* (it'll say in the command window anyway).
+
+## Blog 
+
+**GET** `http://localhost:5000/posts`
 
 ## Repos
-...
 
-## Text Messaging
-...
+**GET** `http://localhost:5000/repos`
+**GET** `http://localhost:5000/repo/api-the-musicial-kind/readme`
+ 
+## Communications
+
+### Email
+
+### Text Messaging
+
+## What's next?
+* Implement testing
+* More functionality
