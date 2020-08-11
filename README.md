@@ -1,4 +1,4 @@
-# my-apis
+# My APIs
 
 [![time tracker](https://wakatime.com/badge/github/lornasw93/my-apis.svg)](https://wakatime.com/badge/github/lornasw93/my-apis)
 
