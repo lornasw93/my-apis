@@ -1,7 +1,13 @@
 
 # My APIs
 
-The purpose of this project is to work as a backend service for my portfolio website.
+The purpose of this project is to work as a backend service for my portfolio website. Although a work in progess, you can see this API in action over on [http://lorna.dev/](http://lorna.dev/) - check out the blog, projects and contact page. With basic functality added, I'm working on taking the project to the next level by doing numerous things such as: (list will be kept up-to-date)
+
+* Setup MongoDB (for logging purposes i.e. emails)
+* Implement testing (maybe Mocha for Node.js?)
+* More functionality
+* Explore Twilio API more
+* Pretty emails (basic HTML currently)
 
 ## Tech stack
 * Node.js
@@ -31,11 +37,4 @@ Because I'm using FCF you'll need to `cd` into the *functions* folder of your wo
 `cd C:\Users\lorna.watson\repos\my-apis\functions`
 
 To run locally, fire off `firebase serve` and usually this uses port *5000* (it'll say in the command window anyway).
-
-## What's next?
-* Setup MongoDB (for logging purposes i.e. emails)
-* Implement testing
-* More functionality
-* Explore Twilio API more
-* Pretty emails
-* ...
+ 
