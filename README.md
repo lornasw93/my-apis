@@ -1,3 +1,4 @@
+
 # My APIs
 
 The purpose of this project is to work as a backend service for my portfolio website.
@@ -7,7 +8,7 @@ The purpose of this project is to work as a backend service for my portfolio web
 * Firebase (Cloud Functions) (not free 😢 but wicked 😎)
 * Heruko for hosting (free)
 
-## How to run the project
+## Running the project
 Because I'm using FCF you'll need to `cd` into the *functions* folder of your workspace folder i.e. mine is:
 
 `cd C:\Users\lorna.watson\repos\my-apis\functions`
@@ -20,9 +21,9 @@ To run locally, fire off `firebase serve` and usually this uses port *5000* (it'
 
 ## Repos
 
-**GET** `http://localhost:5000/repos`
-**GET** `http://localhost:5000/repo/api-the-musicial-kind/readme`
- 
+**GET** `http://localhost:5000/repos/<username>`
+**GET** `http://localhost:5000/<username>/repo/api-the-musicial-kind/readme`
+
 ## Communications
 
 ### Email
@@ -30,5 +31,9 @@ To run locally, fire off `firebase serve` and usually this uses port *5000* (it'
 ### Text Messaging
 
 ## What's next?
+* Setup MongoDB (for logging purposes i.e. emails)
 * Implement testing
 * More functionality
+* Explore Twilio API more
+* Pretty emails
+* ...
