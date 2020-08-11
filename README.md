@@ -17,7 +17,7 @@ The purpose of this project is to work as a backend service for my portfolio web
 ### Repos
 
 **GET** `http://localhost:5000/repos/<username>`
-**GET** `http://localhost:5000/<username>/repo/api-the-musicial-kind/readme`
+**GET** `http://localhost:5000/<username>/repo/<project>/readme`
 
 ### Communications
 
