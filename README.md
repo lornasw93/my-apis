@@ -16,7 +16,7 @@ To run locally, fire off `firebase serve` and usually this uses port *5000* (it'
 
 ## Blog 
 
-**GET** `http://localhost:5000/posts`
+**GET** `http://localhost:5000/posts/<username>`
 
 ## Repos
 
