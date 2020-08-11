@@ -29,7 +29,7 @@ const corsOptions = {
 // setup routes (to be extracted into a separate file)
 app.get('/repos', repoRoutes);
 app.get('/repo/:name/readme', repoRoutes);
-app.get('/posts', blogRoutes);
+app.get('/posts/:username', blogRoutes);
 app.get('/sms:body', textMessageRoutes); 
 
 //TODO setup route for emails too
