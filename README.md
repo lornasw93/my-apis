@@ -9,6 +9,8 @@ The purpose of this project is to work as a backend service for my portfolio web
 * Pretty emails (basic HTML currently)
 * Authentication (Auth0?)
 
+I've talked about why I created this backend service in [my blog post](https://dev.to/lornasw93/why-i-created-a-node-js-back-end-service-for-my-portfolio-site-4062).
+
 ## Tech stack
 * Node.js
 * Firebase (Cloud Functions) (not free 😢 but wicked 😎)
