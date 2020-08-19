@@ -7,6 +7,7 @@ The purpose of this project is to work as a backend service for my portfolio web
 * More functionality
 * Explore Twilio API more
 * Pretty emails (basic HTML currently)
+* Authentication (Auth0?)
 
 ## Tech stack
 * Node.js
