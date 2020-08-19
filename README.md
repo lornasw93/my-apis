@@ -1,10 +1,9 @@
-
 # My APIs
 
 The purpose of this project is to work as a backend service for my portfolio website. Although a work in progess, you can see this API in action over on [https://lorna.dev/](https://lorna.dev/) - check out the blog, projects and contact page. With basic functality added, I'm working on taking the project to the next level by doing numerous things such as: (list will be kept up-to-date)
 
 * Setup MongoDB (for logging purposes i.e. emails)
-* Implement testing (maybe Mocha for Node.js?)
+* Implement testing (Mocha?)
 * More functionality
 * Explore Twilio API more
 * Pretty emails (basic HTML currently)
@@ -22,7 +21,7 @@ The purpose of this project is to work as a backend service for my portfolio web
 
 ### Repos
 
-**GET** `http://localhost:5000/repos/<username>`
+**GET** `http://localhost:5000/repos/<username>`  
 **GET** `http://localhost:5000/<username>/repo/<project>/readme`
 
 ### Communications
