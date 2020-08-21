@@ -4,4 +4,6 @@ const blogController = require('../controllers/blog.controller');
 
 router.get('/posts/:username', blogController.getAllPosts); 
 
+router.get('/posts/count/:username', blogController.getPostCount); 
+
 module.exports = router;

@@ -5,9 +5,11 @@ var config = require("../config"),
 exports.getRepos = (req, res) => {
   res.set("Cache-Control", "public, max-age=300, s-maxage=600");
 
+  var username = req.params.username;
+
   axios({
     method: "get",
-    url: `https://api.github.com/users/lornasw93/repos`,
+    url: `https://api.github.com/users/${username}/repos`,
     headers: {
       Authorization: `Bearer ${config.githubToken}`,
       "Content-Type": "application/json",
@@ -24,10 +26,11 @@ exports.getRepos = (req, res) => {
  
 exports.getReadme = (req, res) => {
   var repo = req.params.name;
+  var username = req.params.username;
 
   axios({
     method: "get",
-    url: `https://github.com/lornasw93/${repo}/blob/master/README.md`
+    url: `https://github.com/${username}/${repo}/blob/master/README.md`
   })
     .then((response) => {
       const data = response.data;
