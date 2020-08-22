@@ -42,3 +42,29 @@ exports.getReadme = (req, res) => {
       res.send(err);
     });
 };
+
+exports.getRepoCount = (req, res) => {
+  var username = req.params.username;
+
+  res.set("Cache-Control", "public, max-age=300, s-maxage=600");
+
+  axios({
+    method: "get",
+    url: `https://api.github.com/users/${username}/repos`,
+    headers: {
+      Authorization: `Bearer ${config.githubToken}`,
+      "Content-Type": "application/json",
+      Accept: "application/vnd.github.mercy-preview+json", // MUST ADD TO INCLUDE TOPICS
+    },
+  })
+    .then((resp) => {
+      if (resp.data) {
+        var count = Object.entries(resp.data).length;
+
+        res.send({ 'count': count });
+      }
+    })
+    .catch((err) => {
+      res.send(err);
+    }); 
+};

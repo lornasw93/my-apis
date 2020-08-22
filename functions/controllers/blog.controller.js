@@ -34,11 +34,3 @@ exports.getPostCount = (req, res) => {
       res.send(err);
     });
 };
-
-
-
-
-
-
-
-

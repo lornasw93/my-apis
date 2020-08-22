@@ -28,16 +28,20 @@ const corsOptions = {
 };
 
 // setup routes (to be extracted into a separate file)
-app.get("/repos/:username", repoRoutes);
-app.get("/:username/repo/:name/readme", repoRoutes);
-app.get("/posts/:username", blogRoutes);
-app.get("/posts/count/:username", blogRoutes);
-app.get("/sms:body", textMessageRoutes);
-app.get("/clicky/actions-downloads", clickyRoutes);
+app.get("/api/repos/:username", repoRoutes);
+app.get("/api/:username/repo/:name/readme", repoRoutes);
+app.get("/api/repos/count/:username", repoRoutes);
+
+app.get("/api/posts/:username", blogRoutes);
+app.get("/api/posts/count/:username", blogRoutes);
+
+app.get("/api/sms:body", textMessageRoutes);
+
+app.get("/api/clicky/actions-downloads", clickyRoutes);
 
 
 //TODO setup route for emails too
-app.post("/email/my-website/contact", cors(corsOptions), function (req, res) {
+app.post("/api/email/my-website/contact", cors(corsOptions), function (req, res) {
   var text = `<p><b>${req.body.name}</b> has filled out the contact form on https://lorna.dev/contact. The details are:</p>
     <p><b>Email</b>: ${req.body.email}</p>
     <p><b>Message</b>: ${req.body.message}</p>`;
