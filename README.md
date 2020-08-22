@@ -14,7 +14,7 @@ I've talked about why I created this backend service in [my blog post](https://d
 ## Tech stack
 * Node.js
 * Firebase (Cloud Functions) (not free 😢 but wicked 😎)
-* Heruko for hosting (free)
+* Firebase for hosting (free)
 
 ## Project structure
 
