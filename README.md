@@ -20,12 +20,12 @@ I've talked about why I created this backend service in [my blog post](https://d
 
 ### Blog 
 
-**GET** `http://localhost:5000/posts/<username>`
+**GET** `http://localhost:5000/api/posts/<username>`
 
 ### Repos
 
-**GET** `http://localhost:5000/repos/<username>`  
-**GET** `http://localhost:5000/<username>/repo/<project>/readme`
+**GET** `http://localhost:5000/api/repos/<username>`  
+**GET** `http://localhost:5000/api/<username>/repo/<project>/readme`
 
 ### Communications
 
