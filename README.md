@@ -1,6 +1,6 @@
 # My APIs
 
-The purpose of this project is to work as a backend service for my portfolio website. Although a work in progess, you can see this API in action over on [https://lorna.dev/](https://lorna.dev/) - check out the blog, projects and contact page. With basic functality added, I'm working on taking the project to the next level by doing numerous things such as: (list will be kept up-to-date)
+The purpose of this project is to work as a backend service for my portfolio website. Although a work in progess, you can see this API in action over on [https://lorna.dev/](https://lorna.dev/) - check out the blog, projects and contact page. With basic functionality added, I'm working on taking the project to the next level by doing numerous things such as: (list will be kept up-to-date)
 
 * Setup MongoDB (for logging purposes i.e. emails)
 * Implement testing (Mocha?)
