@@ -7,7 +7,7 @@ The purpose of this project is to work as a backend service for my portfolio web
 * More functionality
 * Explore Twilio API more
 * Pretty emails (basic HTML currently)
-* Authentication (Auth0?)
+* Authentication (Auth0? Identity Server 4?)
 
 I've talked about why I created this backend service in [my blog post](https://dev.to/lornasw93/why-i-created-a-node-js-back-end-service-for-my-portfolio-site-4062).
 
@@ -39,4 +39,3 @@ Because I'm using FCF you'll need to `cd` into the *functions* folder of your wo
 `cd C:\Users\lorna.watson\repos\my-apis\functions`
 
 To run locally, fire off `firebase serve` and usually this uses port *5000* (it'll say in the command window anyway).
- 
