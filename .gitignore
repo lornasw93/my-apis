@@ -1,4 +1,6 @@
 .firebaserc
+package-lock.json
+.vs
 
 # Logs
 logs
