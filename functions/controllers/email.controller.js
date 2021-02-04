@@ -1,5 +1,5 @@
 var config = require("../config"),
-  nodemailer = require("nodemailer");
+    nodemailer = require("nodemailer");
 
 exports.sendContactEmail = (req, res) => { 
     var text = `<p><b>${req.body.name}</b> has filled out the contact form on https://lorna.dev/contact. The details are:</p>

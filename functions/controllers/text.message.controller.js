@@ -1,5 +1,5 @@
 const config = require("../config"),
-  client = require("twilio")(config.accountSid, config.authToken);
+      client = require("twilio")(config.accountSid, config.authToken);
 
 exports.sendText = (req, res) => {
   client.messages

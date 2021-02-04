@@ -1,6 +1,6 @@
-const express = require('express');
-const router = express.Router();
-const clickyController = require('../controllers/clicky.controller');
+const express = require("express"),
+      router = express.Router(),
+      clickyController = require('../controllers/clicky.controller');
 
 router.get('/api/clicky/downloads', clickyController.getDownloadsCount); 
 

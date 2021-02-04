@@ -1,5 +1,5 @@
 var axios = require("axios"),
-  config = require("../config");
+    config = require("../config");
 
 exports.getDownloadsCount = (req, res) => {
   axios({

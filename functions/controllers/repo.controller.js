@@ -1,6 +1,6 @@
 var config = require("../config"),
-  axios = require("axios"),
-  cheerio = require("cheerio");
+    axios = require("axios"),
+    cheerio = require("cheerio");
 
 exports.getRepos = (req, res) => {
   res.set("Cache-Control", "public, max-age=300, s-maxage=600");

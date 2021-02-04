@@ -1,6 +1,6 @@
-const express = require('express');
-const router = express.Router();
-const blogController = require('../controllers/blog.controller');
+const express = require("express"),
+      router = express.Router(),
+      blogController = require('../controllers/blog.controller');
 
 router.get('/api/posts/:username', blogController.getAllPosts); 
 router.get('/api/posts/count/:username', blogController.getPostCount); 

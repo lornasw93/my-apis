@@ -1,6 +1,6 @@
-const express = require('express');
-const router = express.Router();
-const textMessageController = require('../controllers/text.message.controller');
+const express = require("express"),
+      router = express.Router(),
+      textMessageController = require('../controllers/text.message.controller');
 
 router.get('/api/sms:body', textMessageController.sendText); 
 

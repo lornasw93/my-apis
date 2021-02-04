@@ -1,6 +1,5 @@
 var axios = require("axios");
 
-
 exports.getAllPosts = (req, res) => {
   var username = req.params.username;
 
