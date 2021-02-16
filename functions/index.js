@@ -26,8 +26,7 @@ const corsOptions = {
     }
   },
 };
-
-// setup routes (to be extracted into a separate file)
+ 
 app.get("/api/repos/:username", repoRoutes);
 app.get("/api/:username/repo/:name/readme", repoRoutes);
 app.get("/api/repos/count/:username", repoRoutes);
