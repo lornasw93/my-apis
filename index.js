@@ -1,15 +1,11 @@
-const functions = require("firebase-functions"),
-  express = require("express"),
+const express = require("express"),
   app = express(),
   bodyParser = require("body-parser"),
   cors = require("cors"),
   nodemailer = require("nodemailer"),
-  config = require("./config"),
   repoRoutes = require("./routes/repo.routes"),
-  //emailRoutes = require('./routes/email.routes');
   blogRoutes = require("./routes/blog.routes"),
-  textMessageRoutes = require("./routes/text.message.routes"),
-  clickyRoutes = require("./routes/clicky.routes");
+  aws = require('aws-sdk');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -27,15 +23,20 @@ const corsOptions = {
   },
 };
  
-app.get("/api/repos/:username", repoRoutes);
-app.get("/api/:username/repo/:name/readme", repoRoutes);
-app.get("/api/repos/count/:username", repoRoutes);
-app.get("/api/posts/:username", blogRoutes);
-app.get("/api/posts/count/:username", blogRoutes);
-app.get("/api/sms:body", textMessageRoutes);
-app.get("/api/clicky/actions-downloads", clickyRoutes);
+app.get("/api/repos", repoRoutes);
+app.get("/api/repo/:name/readme", repoRoutes);
+app.get("/api/repos/count", repoRoutes);
+app.get("/api/posts", blogRoutes);
+app.get("/api/posts/count", blogRoutes);
 
-//TODO setup route for emails too
+let config = new aws.S3({
+    host: process.env.SMTP_HOST,
+    password: process.env.SMTP_PASSWORD,
+    fromEmail: process.env.SMTP_FROM_EMAIL,
+    fromName: process.env.SMTP_FROM_NAME,
+    toEmail: process.env.SMTP_TO_EMAIL
+});
+ 
 app.post("/api/email/my-website/contact", cors(corsOptions), function (req, res) {
   var text = `<p><b>${req.body.name}</b> has filled out the contact form on https://lorna.dev/contact. The details are:</p>
     <p><b>Email</b>: ${req.body.email}</p>
@@ -63,4 +64,8 @@ app.post("/api/email/my-website/contact", cors(corsOptions), function (req, res)
   });
 });
 
-exports.app = functions.https.onRequest(app);
+var port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+  console.log(`Server has started listening on port ${port}`);
+});

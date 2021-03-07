@@ -1,17 +1,19 @@
-var config = require("../config"),
-    axios = require("axios"),
-    cheerio = require("cheerio");
+var axios = require("axios"),
+    cheerio = require("cheerio"),
+    aws = require('aws-sdk');
+
+    let config = new aws.S3({
+      token: process.env.GITHUB_TOKEN,
+  });
 
 exports.getRepos = (req, res) => {
   res.set("Cache-Control", "public, max-age=300, s-maxage=600");
 
-  var username = req.params.username;
-
   axios({
     method: "get",
-    url: `https://api.github.com/users/${username}/repos`,
+    url: `https://api.github.com/users/lornasw93/repos`,
     headers: {
-      Authorization: `Bearer ${config.githubToken}`,
+      Authorization: `Bearer ${config.token}`,
       "Content-Type": "application/json",
       Accept: "application/vnd.github.mercy-preview+json", // MUST ADD TO INCLUDE TOPICS
     },
@@ -26,11 +28,10 @@ exports.getRepos = (req, res) => {
  
 exports.getReadme = (req, res) => {
   var repo = req.params.name;
-  var username = req.params.username;
 
   axios({
     method: "get",
-    url: `https://github.com/${username}/${repo}/blob/master/README.md`
+    url: `https://github.com/lornasw93/${repo}/blob/master/README.md`
   })
     .then((response) => {
       const data = response.data;
@@ -44,15 +45,13 @@ exports.getReadme = (req, res) => {
 };
 
 exports.getRepoCount = (req, res) => {
-  var username = req.params.username;
-
   res.set("Cache-Control", "public, max-age=300, s-maxage=600");
 
   axios({
     method: "get",
-    url: `https://api.github.com/users/${username}/repos`,
+    url: `https://api.github.com/users/lornasw93/repos`,
     headers: {
-      Authorization: `Bearer ${config.githubToken}`,
+      Authorization: `Bearer ${config.token}`,
       "Content-Type": "application/json",
       Accept: "application/vnd.github.mercy-preview+json", // MUST ADD TO INCLUDE TOPICS
     },

@@ -1,5 +1,10 @@
 var axios = require("axios"),
-    config = require("../config");
+  aws = require('aws-sdk');
+
+let config = new aws.S3({
+  siteId: process.env.CLICKY_SITE_ID,
+  siteKey: process.env.CLICKY_SITE_KEY
+});
 
 exports.getDownloadsCount = (req, res) => {
   axios({

@@ -13,7 +13,7 @@ I've talked about why I created this backend service in [my blog post](https://d
 
 ## Tech stack
 * Node.js
-* Firebase (Cloud Functions) (not free 😢 but wicked 😎)
+* Heroku for hosting
 * Firebase for hosting (free)
 
 ## Project structure
@@ -26,16 +26,10 @@ I've talked about why I created this backend service in [my blog post](https://d
 
 **GET** `http://localhost:5000/api/repos/<username>`  
 **GET** `http://localhost:5000/api/<username>/repo/<project>/readme`
-
-### Communications
-
+ 
 #### Email
 
 #### Text Messaging
 
 ## Running the project
-Because I'm using FCF you'll need to `cd` into the *functions* folder of your workspace folder i.e. mine is:
-
-`cd C:\Users\lorna.watson\repos\my-apis\functions`
-
-To run locally, fire off `firebase serve` and usually this uses port *5000* (it'll say in the command window anyway).
+`cd` into project root, run `node index.js` and open your browser `http://localhost:5000`
