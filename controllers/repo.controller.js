@@ -1,10 +1,5 @@
 var axios = require("axios"),
-  cheerio = require("cheerio"),
-  aws = require('aws-sdk');
-
-let config = new aws.S3({
-  token: process.env.GITHUB_TOKEN
-});
+  cheerio = require("cheerio");
 
 exports.getRepos = (req, res) => {
   res.set("Cache-Control", "public, max-age=300, s-maxage=600");
@@ -13,7 +8,7 @@ exports.getRepos = (req, res) => {
     method: "get",
     url: `https://api.github.com/users/lornasw93/repos`,
     headers: {
-      Authorization: `Bearer ${config.token}`,
+      Authorization: process.env.GITHUB_TOKEN,
       "Content-Type": "application/json",
       Accept: "application/vnd.github.mercy-preview+json", // MUST ADD TO INCLUDE TOPICS
     },
@@ -51,7 +46,7 @@ exports.getRepoCount = (req, res) => {
     method: "get",
     url: `https://api.github.com/users/lornasw93/repos`,
     headers: {
-      Authorization: `Bearer ${config.token}`,
+      Authorization: process.env.GITHUB_TOKEN,
       "Content-Type": "application/json",
       Accept: "application/vnd.github.mercy-preview+json", // MUST ADD TO INCLUDE TOPICS
     },
