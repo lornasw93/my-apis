@@ -1,15 +1,9 @@
-var axios = require("axios"),
-  aws = require('aws-sdk');
-
-let config = new aws.S3({
-  siteId: process.env.CLICKY_SITE_ID,
-  siteKey: process.env.CLICKY_SITE_KEY
-});
+var axios = require("axios");
 
 exports.getDownloadsCount = (req, res) => {
   axios({
     method: "get",
-    url: `http://api.clicky.com/api/stats/4?site_id=${config.siteId}&sitekey=${config.siteKey}&type=downloads&output=json&date=2020`,
+    url: `http://api.clicky.com/api/stats/4?site_id=${process.env.CLICKY_SITE_ID}&sitekey=${process.env.CLICKY_SITE_KEY}&type=downloads&output=json&date=2020`,
     headers: {
       "Content-Type": "application/json",
     },

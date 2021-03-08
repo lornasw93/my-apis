@@ -4,8 +4,7 @@ const express = require("express"),
   cors = require("cors"),
   nodemailer = require("nodemailer"),
   repoRoutes = require("./routes/repo.routes"),
-  blogRoutes = require("./routes/blog.routes"),
-  aws = require('aws-sdk');
+  blogRoutes = require("./routes/blog.routes");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -30,25 +29,17 @@ app.get("/api/posts", blogRoutes);
 app.get("/api/posts/count", blogRoutes);
 
 app.post("/api/email/my-website/contact", cors(corsOptions), function (req, res) {
-  let config = new aws.S3({
-    host: process.env.SMTP_HOST,
-    password: process.env.SMTP_PASSWORD,
-    fromEmail: process.env.SMTP_FROM_EMAIL,
-    fromName: process.env.SMTP_FROM_NAME,
-    toEmail: process.env.SMTP_TO_EMAIL
-  });
-
   var text = `<p><b>${req.body.name}</b> has filled out the contact form on https://lorna.dev/contact. The details are:</p>
     <p><b>Email</b>: ${req.body.email}</p>
     <p><b>Message</b>: ${req.body.message}</p>`;
 
   var transporter = nodemailer.createTransport(
-    `smtps://${config.fromEmail}:${config.password}@${config.host}`
+    `smtps://${process.env.SMTP_FROM_EMAIL}:${process.env.SMTP_PASSWORD}@${process.env.SMTP_HOST}`
   );
 
   const mailOptions = {
-    from: `"${config.fromName}" <${config.fromEmail}>`,
-    to: config.toEmail,
+    from: `"${process.env.SMTP_FROM_NAME}" <${process.env.SMTP_FROM_EMAIL}>`,
+    to: process.env.SMTP_TO_EMAIL,
     subject: "Form Submitted from https://lorna.dev/contact",
     html: text,
   };
