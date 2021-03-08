@@ -1,10 +1,10 @@
 var axios = require("axios"),
-    cheerio = require("cheerio"),
-    aws = require('aws-sdk');
+  cheerio = require("cheerio"),
+  aws = require('aws-sdk');
 
-    let config = new aws.S3({
-      token: process.env.GITHUB_TOKEN,
-  });
+let config = new aws.S3({
+  token: process.env.GITHUB_TOKEN,
+});
 
 exports.getRepos = (req, res) => {
   res.set("Cache-Control", "public, max-age=300, s-maxage=600");
@@ -25,7 +25,7 @@ exports.getRepos = (req, res) => {
       res.send(err);
     });
 };
- 
+
 exports.getReadme = (req, res) => {
   var repo = req.params.name;
 
@@ -65,5 +65,5 @@ exports.getRepoCount = (req, res) => {
     })
     .catch((err) => {
       res.send(err);
-    }); 
+    });
 };

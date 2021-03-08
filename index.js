@@ -22,22 +22,22 @@ const corsOptions = {
     }
   },
 };
- 
+
 app.get("/api/repos", repoRoutes);
 app.get("/api/repo/:name/readme", repoRoutes);
 app.get("/api/repos/count", repoRoutes);
 app.get("/api/posts", blogRoutes);
 app.get("/api/posts/count", blogRoutes);
 
-let config = new aws.S3({
+app.post("/api/email/my-website/contact", cors(corsOptions), function (req, res) {
+  let config = new aws.S3({
     host: process.env.SMTP_HOST,
     password: process.env.SMTP_PASSWORD,
     fromEmail: process.env.SMTP_FROM_EMAIL,
     fromName: process.env.SMTP_FROM_NAME,
     toEmail: process.env.SMTP_TO_EMAIL
-});
- 
-app.post("/api/email/my-website/contact", cors(corsOptions), function (req, res) {
+  });
+
   var text = `<p><b>${req.body.name}</b> has filled out the contact form on https://lorna.dev/contact. The details are:</p>
     <p><b>Email</b>: ${req.body.email}</p>
     <p><b>Message</b>: ${req.body.message}</p>`;
