@@ -3,7 +3,7 @@ var axios = require("axios"),
   aws = require('aws-sdk');
 
 let config = new aws.S3({
-  token: process.env.GITHUB_TOKEN,
+  token: process.env.GITHUB_TOKEN
 });
 
 exports.getRepos = (req, res) => {
