@@ -14,22 +14,21 @@ I've talked about why I created this backend service in [my blog post](https://d
 ## Tech stack
 * Node.js
 * Heroku for hosting
-* Firebase for hosting (free)
 
 ## Project structure
 
 ### Blog 
 
-**GET** `http://localhost:5000/api/posts/<username>`
+**GET** `http://localhost:5000/api/posts`
 
 ### Repos
 
-**GET** `http://localhost:5000/api/repos/<username>`  
-**GET** `http://localhost:5000/api/<username>/repo/<project>/readme`
+**GET** `http://localhost:5000/api/repos`  
+**GET** `http://localhost:5000/api/repo/<project>/readme`
  
 #### Email
 
 #### Text Messaging
 
 ## Running the project
-`cd` into project root, run `node index.js` and open your browser `http://localhost:5000`
+`cd` into project root, run `node index.js` and open your browser `http://localhost:3000`
