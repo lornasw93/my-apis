@@ -12,22 +12,8 @@ exports.getRepos = (req, res) => {
       "Content-Type": "application/json",
       Accept: "application/vnd.github.mercy-preview+json", // MUST ADD TO INCLUDE TOPICS
     },
-  }).then((response) => {
-
-    // var filter = [
-    //   'my-apis', 'my-website', 'api-the-musical-kind', 'xml-to-map', 'csv-to-map', 'devops-api-tool.frontend', 'devops-api-tool.backend'
-    // ];
-
-    // var repos = response.data.filter((item) => {
-    //   for (var key in filter) {
-    //     if (item[key] === undefined || item[key] != filter[key])
-    //       return false;
-    //   }
-    //   return true;
-    // });
-
-    res.send(response.data);
-
+  }).then((response) => { 
+    res.send(response.data.slice(0, 11));
   }).catch((err) => {
     res.send(err);
   });

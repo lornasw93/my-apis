@@ -5,15 +5,8 @@ exports.getAllPosts = (req, res) => {
 
   axios
     .get(`https://dev.to/api/articles?username=lornasw93`)
-    .then((resp) => {
-      if (resp.data.length > 0) { 
-        var posts = resp.data.slice(0, 10).sort((a, b) => {
-          var dateA = new Date(a.created_at), dateB = new Date(b.created_at);
-          return dateA.getDate() - dateB.getDate();
-        });
-
-        res.send(posts);
-      }
+    .then((resp) => { 
+      res.send(resp.data.slice(0, 15));
     }).catch((err) => {
       res.send(err);
     });
