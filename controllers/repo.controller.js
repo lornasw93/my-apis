@@ -2,7 +2,6 @@ var axios = require("axios"),
   cheerio = require("cheerio");
 
 exports.getRepos = (req, res) => {
-  console.log(process.env.GITHUB_TOKEN);
   res.set("Cache-Control", "public, max-age=300, s-maxage=600");
 
   axios({
@@ -13,15 +12,22 @@ exports.getRepos = (req, res) => {
       "Content-Type": "application/json",
       Accept: "application/vnd.github.mercy-preview+json", // MUST ADD TO INCLUDE TOPICS
     },
-  }).then((response) => { 
-    if (response.data.length > 0) { 
-      var repos = response.data.slice(0, 7).sort((a, b) => {
-        var dateA = new Date(a.updated_at), dateB = new Date(b.updated_at);
-        return dateA.getDate() - dateB.getDate();
-      }).reverse();
+  }).then((response) => {
 
-      res.send(repos);
-    } 
+    // var filter = [
+    //   'my-apis', 'my-website', 'api-the-musical-kind', 'xml-to-map', 'csv-to-map', 'devops-api-tool.frontend', 'devops-api-tool.backend'
+    // ];
+
+    // var repos = response.data.filter((item) => {
+    //   for (var key in filter) {
+    //     if (item[key] === undefined || item[key] != filter[key])
+    //       return false;
+    //   }
+    //   return true;
+    // });
+
+    res.send(response.data);
+
   }).catch((err) => {
     res.send(err);
   });
