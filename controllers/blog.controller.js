@@ -6,7 +6,7 @@ exports.getAllPosts = (req, res) => {
   axios
     .get(`https://dev.to/api/articles?username=lornasw93`)
     .then((resp) => { 
-      res.send(resp.data.slice(0, 15));
+      res.send(resp.data.slice(0, 14));
     }).catch((err) => {
       res.send(err);
     });
