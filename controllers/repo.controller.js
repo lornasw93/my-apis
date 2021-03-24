@@ -2,6 +2,7 @@ var axios = require("axios"),
   cheerio = require("cheerio");
 
 exports.getRepos = (req, res) => {
+  console.log(process.env.GITHUB_TOKEN);
   res.set("Cache-Control", "public, max-age=300, s-maxage=600");
 
   axios({
@@ -12,13 +13,22 @@ exports.getRepos = (req, res) => {
       "Content-Type": "application/json",
       Accept: "application/vnd.github.mercy-preview+json", // MUST ADD TO INCLUDE TOPICS
     },
-  })
-    .then((response) => { 
-      res.send(response.data);
-    })
-    .catch((err) => {
-      res.send(err);
-    });
+  }).then((response) => { 
+    if (response.data.length > 0) {
+      var r = response.data.sort((a, b) => {
+        return a.stargazers_count - b.stargazers_count
+      }).reverse();
+
+      var repos = r.slice(0, 7).sort((a, b) => {
+        var dateA = new Date(a.updated_at), dateB = new Date(b.updated_at);
+        return dateA.getDate() - dateB.getDate();
+      });
+
+      res.send(repos);
+    } 
+  }).catch((err) => {
+    res.send(err);
+  });
 };
 
 exports.getReadme = (req, res) => {

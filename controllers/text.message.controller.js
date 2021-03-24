@@ -6,8 +6,7 @@ exports.sendText = (req, res) => {
       body: req.query.body,
       from: process.env.TWILIO_FROM_NUMBER,
       to: process.env.TWILIO_TO_NUMBER
-    })
-    .then((message) => res.send(message.sid))
+    }).then((message) => res.send(message.sid))
     .catch((err) => {
       res.send(err);
     });

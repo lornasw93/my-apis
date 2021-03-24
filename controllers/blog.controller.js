@@ -18,8 +18,7 @@ exports.getAllPosts = (req, res) => {
 
         res.send(posts);
       }
-    })
-    .catch((err) => {
+    }).catch((err) => {
       res.send(err);
     });
 };

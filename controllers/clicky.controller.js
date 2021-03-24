@@ -7,13 +7,11 @@ exports.getDownloadsCount = (req, res) => {
     headers: {
       "Content-Type": "application/json",
     },
-  })
-    .then((response) => {
-      res.send(response.data);
-    })
-    .catch((err) => {
-      res.send(err);
-    });
+  }).then((response) => {
+    res.send(response.data);
+  }).catch((err) => {
+    res.send(err);
+  });
 };
 
 // CV Downloads:
