@@ -14,12 +14,8 @@ exports.getRepos = (req, res) => {
       Accept: "application/vnd.github.mercy-preview+json", // MUST ADD TO INCLUDE TOPICS
     },
   }).then((response) => { 
-    if (response.data.length > 0) {
-      var r = response.data.sort((a, b) => {
-        return a.stargazers_count - b.stargazers_count
-      }).reverse();
-
-      var repos = r.slice(0, 7).sort((a, b) => {
+    if (response.data.length > 0) { 
+      var repos = response.data.slice(0, 7).sort((a, b) => {
         var dateA = new Date(a.updated_at), dateB = new Date(b.updated_at);
         return dateA.getDate() - dateB.getDate();
       });
