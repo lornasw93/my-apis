@@ -11,7 +11,7 @@ exports.getAllPosts = (req, res) => {
           return a.public_reactions_count - b.public_reactions_count
         }).reverse();
 
-        var posts = r.slice(0, 8).sort((a, b) => {
+        var posts = r.slice(0, 10).sort((a, b) => {
           var dateA = new Date(a.created_at), dateB = new Date(b.created_at);
           return dateA.getDate() - dateB.getDate();
         });

@@ -13,7 +13,7 @@ exports.getRepos = (req, res) => {
       Accept: "application/vnd.github.mercy-preview+json", // MUST ADD TO INCLUDE TOPICS
     },
   })
-    .then((response) => {
+    .then((response) => { 
       res.send(response.data);
     })
     .catch((err) => {
