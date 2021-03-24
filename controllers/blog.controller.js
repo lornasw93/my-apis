@@ -6,12 +6,8 @@ exports.getAllPosts = (req, res) => {
   axios
     .get(`https://dev.to/api/articles?username=lornasw93`)
     .then((resp) => {
-      if (resp.data.length > 0) {
-        var r = resp.data.sort((a, b) => {
-          return a.public_reactions_count - b.public_reactions_count
-        }).reverse();
-
-        var posts = r.slice(0, 10).sort((a, b) => {
+      if (resp.data.length > 0) { 
+        var posts = resp.data.slice(0, 10).sort((a, b) => {
           var dateA = new Date(a.created_at), dateB = new Date(b.created_at);
           return dateA.getDate() - dateB.getDate();
         });
