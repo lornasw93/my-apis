@@ -44,8 +44,6 @@ app.post("/api/email/my-website/contact", cors(corsOptions), function (req, res)
     html: text,
   };
 
-  console.log(process.env.SMTP_TO_EMAIL);
-
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
       console.log(error);
