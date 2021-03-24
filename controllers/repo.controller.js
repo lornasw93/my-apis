@@ -18,7 +18,7 @@ exports.getRepos = (req, res) => {
       var repos = response.data.slice(0, 7).sort((a, b) => {
         var dateA = new Date(a.updated_at), dateB = new Date(b.updated_at);
         return dateA.getDate() - dateB.getDate();
-      });
+      }).reverse();
 
       res.send(repos);
     } 
