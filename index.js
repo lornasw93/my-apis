@@ -31,8 +31,6 @@ app.get("/api/posts", blogRoutes);
 app.get("/api/posts/count", blogRoutes);
 
 app.post("/api/email/contact", cors(corsOptions), function (req, res) {
-  console.log(req.body);
-  
   var text = `<p><b>${req.body.name}</b> has filled out the contact form on https://lorna.dev/contact. The details are:</p>
     <p><b>Email</b>: ${req.body.email}</p>
     <p><b>Message</b>: ${req.body.message}</p>`;
