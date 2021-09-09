@@ -1,10 +1,12 @@
 const express = require("express"),
   app = express(),
-  bodyParser = require("body-parser"),
   cors = require("cors"),
   nodemailer = require("nodemailer"),
   repoRoutes = require("./routes/repo.routes"),
-  blogRoutes = require("./routes/blog.routes");
+  blogRoutes = require("./routes/blog.routes"),
+  bodyParser = require("body-parser");
+  
+require('dotenv').config();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -28,7 +30,9 @@ app.get("/api/repos/count", repoRoutes);
 app.get("/api/posts", blogRoutes);
 app.get("/api/posts/count", blogRoutes);
 
-app.post("/api/email/my-website/contact", cors(corsOptions), function (req, res) {
+app.post("/api/email/contact", cors(corsOptions), function (req, res) {
+  console.log(req.body);
+  
   var text = `<p><b>${req.body.name}</b> has filled out the contact form on https://lorna.dev/contact. The details are:</p>
     <p><b>Email</b>: ${req.body.email}</p>
     <p><b>Message</b>: ${req.body.message}</p>`;
@@ -46,7 +50,7 @@ app.post("/api/email/my-website/contact", cors(corsOptions), function (req, res)
 
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
-      console.log(error);
+      res.status(500).send('Error sending email');
     }
 
     res.status(200).send({
@@ -58,5 +62,5 @@ app.post("/api/email/my-website/contact", cors(corsOptions), function (req, res)
 var port = process.env.PORT || 3000;
 
 app.listen(port, () => {
-  console.log(`Server has started listening on port ${port}`);
+  console.log(`Server running on port ${port}`);
 });

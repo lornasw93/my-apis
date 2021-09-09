@@ -28,7 +28,5 @@ I've talked about why I created this backend service in [my blog post](https://d
  
 #### Email
 
-#### Text Messaging
-
 ## Running the project
 `cd` into project root, run `node index.js` and open your browser `http://localhost:3000`

@@ -5,10 +5,15 @@ exports.getAllPosts = (req, res) => {
 
   axios
     .get(`https://dev.to/api/articles?username=lornasw93`)
-    .then((resp) => { 
-      res.send(resp.data.slice(0, 14));
+    .then((response) => {
+      if (response.data != null) {
+        res.send(response.data.slice(0, 7));
+      }
+      else {
+        res.status(404).send('None found');
+      }
     }).catch((err) => {
-      res.send(err);
+      res.status(500).send('Error with retrieving posts');
     });
 };
 
@@ -17,14 +22,14 @@ exports.getPostCount = (req, res) => {
 
   axios
     .get(`https://dev.to/api/articles?usernamelornasw93`)
-    .then((resp) => {
-      if (resp.data) {
-        var count = Object.entries(resp.data).length;
-
-        res.send({ 'count': count });
+    .then((response) => {
+      if (response.data) {
+        res.send({ 'count': Object.entries(response.data).length });
       }
-    })
-    .catch((err) => {
-      res.send(err);
+      else {
+        res.status(404).send('Not found');
+      }
+    }).catch((err) => {
+      res.status(500).send('Error with retrieving post count');
     });
 };

@@ -12,10 +12,15 @@ exports.getRepos = (req, res) => {
       "Content-Type": "application/json",
       Accept: "application/vnd.github.mercy-preview+json", // MUST ADD TO INCLUDE TOPICS
     },
-  }).then((response) => { 
-    res.send(response.data.slice(0, 11));
+  }).then((response) => {
+    if (response.data != null) {
+      res.send(response.data.slice(0, 7));
+    }
+    else {
+      res.status(404).send('None found');
+    }
   }).catch((err) => {
-    res.send(err);
+    res.status(500).send('Error with retrieving repos');
   });
 };
 
@@ -25,16 +30,17 @@ exports.getReadme = (req, res) => {
   axios({
     method: "get",
     url: `https://github.com/lornasw93/${repo}/blob/master/README.md`
-  })
-    .then((response) => {
-      const data = response.data;
-      const $ = cheerio.load(data);
+  }).then((response) => {
+    if (response.data != null) {
+      const $ = cheerio.load(response.data);
       const article = $("article").html();
       res.send(article);
-    })
-    .catch((err) => {
-      res.send(err);
-    });
+    } else {
+      res.status(404).send('Not found');
+    }
+  }).catch((err) => {
+    res.status(500).send('Error with retrieving readme');
+  });
 };
 
 exports.getRepoCount = (req, res) => {
@@ -48,15 +54,14 @@ exports.getRepoCount = (req, res) => {
       "Content-Type": "application/json",
       Accept: "application/vnd.github.mercy-preview+json", // MUST ADD TO INCLUDE TOPICS
     },
-  })
-    .then((resp) => {
-      if (resp.data) {
-        var count = Object.entries(resp.data).length;
-
-        res.send({ 'count': count });
-      }
-    })
-    .catch((err) => {
-      res.send(err);
-    });
+  }).then((resp) => {
+    if (resp.data) {
+      res.send({ 'count': Object.entries(resp.data).length });
+    }
+    else {
+      res.status(404).send('Not found');
+    }
+  }).catch((err) => {
+    res.status(500).send('Error with retrieving repo count');
+  });
 };
