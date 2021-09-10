@@ -10,11 +10,18 @@ exports.getRepos = (req, res) => {
     headers: {
       Authorization: process.env.GITHUB_TOKEN,
       "Content-Type": "application/json",
-      Accept: "application/vnd.github.mercy-preview+json", // MUST ADD TO INCLUDE TOPICS
+      Accept: "application/vnd.github.mercy-preview+json", // ❗ must add to include topics aka tags
     },
   }).then((response) => {
     if (response.data != null) {
-      res.send(response.data.slice(0, 7));
+
+      // 😇 bit of a bodge, as I believe not able to get a list of pinned repos via GitHub API currently... so manually filtering the ones I want instead
+      var repos = response.data.filter(x => x.name == 'my-website'
+        || x.name == 'my-apis'
+        || x.name == 'devops-analysis-tool'
+        || x.name == 'test-results-parser');
+
+      res.send(repos);
     }
     else {
       res.status(404).send('None found');

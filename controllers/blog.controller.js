@@ -7,7 +7,7 @@ exports.getAllPosts = (req, res) => {
     .get(`https://dev.to/api/articles?username=lornasw93`)
     .then((response) => {
       if (response.data != null) {
-        res.send(response.data.slice(0, 7));
+        res.send(response.data.slice(0, 4));
       }
       else {
         res.status(404).send('None found');
