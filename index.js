@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 
 app.use(cors());
 
-const whitelist = ["http://localhost:4200", "https://lorna.dev"];
+const whitelist = ["http://localhost:4200"];
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
@@ -30,7 +30,7 @@ app.get("/api/repos/count", repoRoutes);
 app.get("/api/posts", blogRoutes);
 app.get("/api/posts/count", blogRoutes);
 
-app.post("/api/email/contact", cors(corsOptions), function (req, res) {
+app.post("/api/contact", cors(corsOptions), function (req, res) {
   var text = `<p><b>${req.body.name}</b> has filled out the contact form on https://lorna.dev/contact. The details are:</p>
     <p><b>Email</b>: ${req.body.email}</p>
     <p><b>Message</b>: ${req.body.message}</p>`;

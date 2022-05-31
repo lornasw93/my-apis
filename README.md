@@ -1,32 +1,31 @@
-# My APIs
+# Portfolio APIs
 
-The purpose of this project is to work as a backend service for my portfolio website. Although a work in progress, you can see this API in action over on [https://lorna.dev/](https://lorna.dev/) - check out the blog, projects and contact page. With basic functionality added, I'm working on taking the project to the next level by doing numerous things such as: (list will be kept up-to-date)
+The purpose of this project was to work as a very basic Node.js backend service for my V1 portfolio website (not in use anymore) where I could:
 
-* Setup MongoDB (for logging purposes i.e. emails)
-* Implement testing (Mocha?)
-* More functionality
-* Explore Twilio API more
-* Pretty emails (basic HTML currently)
-* Authentication (Auth0? Identity Server 4?)
+* Send contact email
+* List all GitHub repos
+* GitHub repo count
+* GitHub repo readme file
+* List all dev.to blog posts
+* dev.to blog post count
 
-I've talked about why I created this backend service in [my blog post](https://dev.to/lornasw93/why-i-created-a-node-js-back-end-service-for-my-portfolio-site-4062).
+Ideally I would've liked to have spent more time working on a number of things like authentication, better error handling, pretty emails, testing etc. it was suitable for me at the time. I've talked about why I created this backend service in [this blog post](https://dev.to/lornasw93/why-i-created-a-node-js-back-end-service-for-my-portfolio-site-4062).
 
-## Tech stack
-* Node.js
-* Heroku for hosting
+I used Node.js and Heroku for hosting as both were free.
 
-## Project structure
+## Get started
+Install NPM packages via `npm i` then run the project via `node index.js` and look at `http://localhost:3000`
 
-### Blog 
+## Basic usage
 
-**GET** `http://localhost:5000/api/posts`
+### List all blog posts from dev.to
+**GET** `http://localhost:3000/api/posts`
 
-### Repos
+### List all repos from GitHub
+**GET** `http://localhost:3000/api/repos`  
 
-**GET** `http://localhost:5000/api/repos`  
-**GET** `http://localhost:5000/api/repo/<project>/readme`
- 
-#### Email
+### Get GitHub repo readme
+**GET** `http://localhost:3000/api/repo/<repoName>/readme`
 
-## Running the project
-`cd` into project root, run `node index.js` and open your browser `http://localhost:3000`
+### Send contact email
+**POST** TBC

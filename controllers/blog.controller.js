@@ -21,7 +21,7 @@ exports.getPostCount = (req, res) => {
   res.set("Cache-Control", "public, max-age=300, s-maxage=600");
 
   axios
-    .get(`https://dev.to/api/articles?usernamelornasw93`)
+    .get(`https://dev.to/api/articles?username=lornasw93`)
     .then((response) => {
       if (response.data) {
         res.send({ 'count': Object.entries(response.data).length });
